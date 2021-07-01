@@ -7,6 +7,7 @@ public class Aluno extends Pessoa{
     }
 
     public Aluno(String nome, String cpf) {
+
         super(nome, cpf);
     }
 
@@ -22,5 +23,14 @@ public class Aluno extends Pessoa{
     public void setCurso(Curso curso) {
 
         this.curso = curso;
+    }
+
+    @Override
+    public String toString() {
+        return "\n Aluno | " +
+                "\n Nome: "+this.getNome()+
+                "\n CPF: "+this.getCpf()+
+                "\n Idade: "+this.getIdade()+
+                "\n "+ curso;
     }
 }

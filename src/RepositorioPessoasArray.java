@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class RepositorioPessoasArray {
     private Pessoa [] pessoas;
     private int indice;
@@ -57,5 +59,12 @@ public class RepositorioPessoasArray {
             }
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "RepositorioPessoasArray |" +
+                "\n Pessoas: "+ Arrays.toString(pessoas)+
+                "\n Indice: "+ indice;
     }
 }

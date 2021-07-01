@@ -40,4 +40,12 @@ public class Pessoa {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa |"+
+                "\n Nome: "+ nome+
+                "\n Cpf: "+ cpf+
+                "\n Idade: "+ idade;
+    }
 }
