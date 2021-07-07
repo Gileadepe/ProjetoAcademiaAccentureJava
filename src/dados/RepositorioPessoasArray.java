@@ -1,6 +1,11 @@
+package dados;
+
+import negocio.Pessoa;
+import negocio.RepositorioPessoas;
+
 import java.util.Arrays;
 
-public class RepositorioPessoasArray {
+public class RepositorioPessoasArray implements RepositorioPessoas {
     private Pessoa [] pessoas;
     private int indice;
 
@@ -30,22 +35,22 @@ public class RepositorioPessoasArray {
         this.indice = indice;
     }
 
-    public void inserir(Pessoa pessoa){
-        pessoas[indice] = pessoa;
+    public void inserir(Pessoa x){
+        pessoas[indice] = x;
         indice = indice + 1;
 
     }
 
-    public Pessoa procurar(String numCpf){
-        Pessoa procurado = null;
+    public Pessoa procurarString(String numCpf){
+        Pessoa procurada = null;
         for (int i = 0; i<indice;i++){
             Pessoa aux = this.pessoas[i];
             if(aux.getCpf().equals(numCpf)){
-                procurado = aux;
+                procurada = aux;
             }
         }
 
-        return procurado;
+        return procurada;
     }
 
     public void remover(String numCpf){
@@ -63,7 +68,7 @@ public class RepositorioPessoasArray {
 
     @Override
     public String toString() {
-        return "RepositorioPessoasArray |" +
+        return "dados.RepositorioPessoasArray |" +
                 "\n Pessoas: "+ Arrays.toString(pessoas)+
                 "\n Indice: "+ indice;
     }

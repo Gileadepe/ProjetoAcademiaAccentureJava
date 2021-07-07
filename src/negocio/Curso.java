@@ -1,3 +1,5 @@
+package negocio;
+
 public class Curso {
     private int codigo;
     private String nome;
@@ -28,7 +30,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        return " Curso |" +
+        return " negocio.Curso |" +
                 "\n Codigo: "+ codigo +
                 "\n Nome: " + nome;
     }

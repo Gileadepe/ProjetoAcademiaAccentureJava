@@ -1,4 +1,6 @@
-public class Aluno extends Pessoa{
+package negocio;
+
+public class Aluno extends Pessoa {
     private Curso curso;
 
     public Aluno(String nome, String cpf, int idade, Curso curso) {
@@ -27,7 +29,7 @@ public class Aluno extends Pessoa{
 
     @Override
     public String toString() {
-        return "\n Aluno | " +
+        return "\n negocio.Aluno | " +
                 "\n Nome: "+this.getNome()+
                 "\n CPF: "+this.getCpf()+
                 "\n Idade: "+this.getIdade()+

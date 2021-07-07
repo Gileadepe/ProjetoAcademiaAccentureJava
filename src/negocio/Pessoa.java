@@ -1,3 +1,5 @@
+package negocio;
+
 public class Pessoa {
     private String nome;
     private String cpf;
@@ -43,7 +45,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa |"+
+        return "negocio.Pessoa |"+
                 "\n Nome: "+ nome+
                 "\n Cpf: "+ cpf+
                 "\n Idade: "+ idade;
