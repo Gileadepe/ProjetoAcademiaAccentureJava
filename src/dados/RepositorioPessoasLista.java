@@ -1,19 +1,24 @@
 package dados;
 
+import negocio.Aluno;
 import negocio.Pessoa;
+import negocio.Professor;
 import negocio.RepositorioPessoas;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioPessoasLista implements RepositorioPessoas {
+
+    PessoaDAO dao = new PessoaDAO();
+    //private List<Pessoa> pessoas = dao.getLista();
     private List<Pessoa> pessoas;
-
-    public void RepositorioPessoasLista(){
-
-    }
+    //private List<Aluno> alunos;
+    //private List<Professor> professores;
 
     public RepositorioPessoasLista() {
-        this.pessoas = new ArrayList<Pessoa>();
+        pessoas = new ArrayList<Pessoa>();
+        //alunos = new ArrayList<Aluno>();
+        //professores = new ArrayList<Professor>();
     }
 
     public List getPessoas() {
@@ -27,34 +32,56 @@ public class RepositorioPessoasLista implements RepositorioPessoas {
     }
 
     @Override
-    public void inserir(Pessoa x) {
-        pessoas.add(x);
-
-    }
-
-    @Override
-    public Pessoa procurarString(String numCpf) {
-        Pessoa procurada = null;
-        for (Pessoa pessoa: pessoas){
-            if (pessoa.getCpf().equals(numCpf))
-                procurada = pessoa;
-
-        }
-        return procurada;
-    }
-
-    @Override
-    public void remover(String numCpf) {
-        int posicao = -1;
-        for (Pessoa pessoa: pessoas){
-            if (pessoa.getCpf().equals(numCpf)){
-                posicao = pessoas.indexOf(pessoa);
-                break;
+    public void inserirAluno(Aluno x) throws RepositorioException{
+        for (Pessoa p : pessoas){
+            if (p.getCpf().equals(x.getCpf())){
+                throw new RepositorioException();
             }
         }
-        if (posicao != -1)
-            pessoas.remove(posicao);
+        pessoas.add(x);
+        dao.adicionaAluno(x);
 
+    }
+
+    @Override
+    public void inserirProfessor(Professor x) throws RepositorioException{
+        for (Pessoa p : pessoas){
+            if (p.getCpf().equals(x.getCpf())){
+                throw new RepositorioException();
+            }
+        }
+        pessoas.add(x);
+        dao.adicionaProfessor(x);
+
+    }
+
+    public List<Aluno> listAlunos() throws Exception {
+        List<Aluno> a = dao.getListaAlunos();
+        return a;
+    }
+
+    public List<Professor> listProfessores() throws Exception {
+        List<Professor> p = dao.getListaProf();
+        return p;
+    }
+
+    public void removerAluno(String numCPF) throws Exception {
+        dao.deleteAluno(numCPF);
+    }
+
+
+    public void removerProfessor(String numCPF) throws Exception {
+        dao.deleteProfessor(numCPF);
+    }
+
+    public Aluno procurarAluno(String numCPF) throws Exception{
+        Aluno a = dao.procurarAluno(numCPF);
+        return a;
+    }
+
+    public Professor procurarProfessor(String numCPF) throws Exception{
+        Professor p = dao.procurarProfessor(numCPF);
+        return p;
     }
 
     public List<Pessoa> listarPessoas(){

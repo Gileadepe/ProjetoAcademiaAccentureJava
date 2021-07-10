@@ -1,75 +1,64 @@
 package dados;
 
 import negocio.Pessoa;
-import negocio.RepositorioPessoas;
 
-import java.util.Arrays;
-
-public class RepositorioPessoasArray implements RepositorioPessoas {
-    private Pessoa [] pessoas;
+public class RepositorioPessoasArray{
+    private Pessoa[] pessoas;
     private int indice;
+    private static int totalDePessoas;
 
-    public RepositorioPessoasArray(int tamanho){
+    RepositorioPessoasArray() {
+
+    }
+
+    RepositorioPessoasArray(int tamanho) {
         indice = 0;
         pessoas = new Pessoa[tamanho];
     }
 
-    public RepositorioPessoasArray(Pessoa[] pessoas, int indice) {
-        this.pessoas = pessoas;
-        this.indice = indice;
-    }
-
-    public Pessoa[] getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(Pessoa[] pessoas) {
-        this.pessoas = pessoas;
-    }
-
-    public int getIndice() {
-        return indice;
-    }
-
-    public void setIndice(int indice) {
-        this.indice = indice;
-    }
-
-    public void inserir(Pessoa x){
+    //Método de inserir pessoas
+    public void inserir(Pessoa x) throws RepositorioException {
         pessoas[indice] = x;
         indice = indice + 1;
-
+        RepositorioPessoasArray.totalDePessoas = RepositorioPessoasArray.totalDePessoas + 1;
     }
 
-    public Pessoa procurarString(String numCpf){
-        Pessoa procurada = null;
-        for (int i = 0; i<indice;i++){
+    //Método de procurar pessoas
+    public Pessoa procurarString(String numCPF) throws Exception {
+        Pessoa procurado = null;
+        for (int i = 0; i < indice; i++) {
             Pessoa aux = this.pessoas[i];
-            if(aux.getCpf().equals(numCpf)){
-                procurada = aux;
-            }
+            if (aux.getCpf().equals(numCPF))
+                procurado = aux;
         }
-
-        return procurada;
+        return procurado;
     }
 
-    public void remover(String numCpf){
-        for (int i = 0; i<indice; i++){
+    //Método de remover pessoas
+    public void remover(String numCPF) throws Exception {
+        for (int i = 0; i < indice; i++) {
             Pessoa aux = this.pessoas[i];
-            if (aux.getCpf().equals(numCpf)){
-
+            if (aux.getCpf().equals(numCPF)) {
                 this.pessoas[i] = this.pessoas[indice - 1];
                 this.pessoas[indice - 1] = null;
-                indice =  indice - 1;
+                indice = indice - 1;
+                System.out.println("CPF removido: " + numCPF);
+                RepositorioPessoasArray.totalDePessoas = RepositorioPessoasArray.totalDePessoas - 1;
+            } else {
+                throw new Exception("Exception message");
             }
         }
 
     }
 
-    @Override
-    public String toString() {
-        return "dados.RepositorioPessoasArray |" +
-                "\n Pessoas: "+ Arrays.toString(pessoas)+
-                "\n Indice: "+ indice;
+    public static int getTotalDePessoas() {
+        return RepositorioPessoasArray.totalDePessoas;
     }
+
+
+    public String toString() {
+        return super.toString();
+
+    }
+
 }
